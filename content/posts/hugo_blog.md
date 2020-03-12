@@ -17,7 +17,7 @@ share:
   enable: true
 comment: true
 
-draft: true
+draft: false
 
 tags: ["Hugo"]
 categories: ["Web"]
