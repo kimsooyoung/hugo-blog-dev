@@ -31,7 +31,6 @@ Hugo 설치, Open-Source theme를 사용해서 블로그 구축, GitHub Page로 
 ---
 
 <img width="1500" alt="스크린샷 2020-03-12 오후 8 16 46" src="https://user-images.githubusercontent.com/12381733/76516288-7b08b500-649e-11ea-8760-8fdc95ca5ea1.png">
->
 
 ---
 
@@ -264,7 +263,7 @@ Markdown 문법을 기본으로 작성하기 때문에 익혀두시면 편하실
 그럼 로컬 환경에서 지금껏 만든 블로그를 돌려봅시다!!
 
 ```bash
-hugo serve -D
+hugo serve
 ```
 
 {{< admonition tip>}}
@@ -275,13 +274,15 @@ hugo serve -D
 
 {{< /admonition >}}
 
-Go to `http://localhost:1313`.
+**블로그 화면을 보고 싶다면 [`http://localhost:1313`](http://localhost:1313)로 접속해 보세요!!**
 
-{{< admonition tip >}}
-When you run `hugo serve`, when the contents of the files change, the page automatically refreshes with the changes.
-{{< /admonition >}}
+<img width="1608" alt="스크린샷 2020-03-13 오후 3 09 20" src="https://user-images.githubusercontent.com/12381733/76594487-a641e180-653c-11ea-9389-e0ca94db1e6b.png">
 
-### 2.6 Build the Website
+### 2.6 Custumize Home Page
+
+기능상의 문제는 없지만, 블로그라 하기에 아직은 뭔가 좀 밋밋합니다.
+
+## 3. Build the Website
 
 When your site is ready to deploy, run the following command:
 
