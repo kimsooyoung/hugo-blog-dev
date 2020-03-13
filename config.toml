@@ -8,9 +8,7 @@ title = "Swimming Kim's Blog"
 # Change the default theme to be use when building the site with Hugo
 theme = "LoveIt"
 
-#[params]
-#  # LoveIt theme version
-#  version = "0.1.X"#
+enableEmoji = true
 
 [menu]
   [[menu.main]]
