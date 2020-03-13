@@ -142,6 +142,10 @@ cd <your-site-name>
 
 [Hugo Themes](https://themes.gohugo.io/)에는 수많은 다양한 theme들이 있습니다.
 
+---
+
+<img width="1636" alt="hugo_theme" src="https://user-images.githubusercontent.com/12381733/76591883-e735f800-6534-11ea-986c-9836a035761d.png">
+
 무려 오픈소스이기 때문에 copyright만 잘 명시한다면 개인 용도로 얼마든지 사용할 수 있습니다.
 
 저는 [**LoveIt**](https://github.com/dillonzq/LoveIt) 라는 theme을 선택하였습니다.
@@ -164,9 +168,13 @@ git init
 git submodule -b master add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
+참고로 저는 3번의 방법을 사용하였습니다. 나중에 LoveIt theme이 더 멋있어진다면 바로 적용할 수 있게요 :v:
+
 ### 2.3 Basic Configuration {#basic-configuration}
 
-The following is a basic configuration for the LoveIt theme:
+방금 가져온 LoveIt theme를 사용해봅시다.
+
+이를 위해서 최상단의 config.toml을 다음과 같이 수정합니다. ( 세부 내용은 [LoveIt Reference](https://hugoloveit.com/theme-documentation-basics/)를 참고하였습니다. )
 
 ```toml
 baseURL = "http://example.org/"
@@ -209,35 +217,65 @@ theme = "LoveIt"
     weight = 3
 ```
 
-{{< admonition >}}
-When building the website, you can set a theme by using `--theme` option. However, we suggest you modify the configuration file (**config.toml**) and set the theme as the default.
-{{< /admonition >}}
-
 ### 2.4 Create Your First Post
 
-Here is the way to create your first post:
+그럼 이번에는 첫 포스트를 작성해 봅시다!! 최상단 디렉토리로 들어가서 원하는 이름의 포스트를 만들어 줍니다.
 
 ```bash
 hugo new posts/first_post.md
 ```
 
-Feel free to edit the post file by adding some sample content and replacing the title value in the beginning of the file.
+`content/posts` 폴더 안에 markdown 파일이 만들어졌습니다.
+
+우선 다음과 같이 수정해 보겠습니다.
+
+```markdown
+---
+title: "First"
+date: 2020-03-13T14:49:58+09:00
+draft: true
+---
+
+## Hello Hugo World
+
+# 안녕하세요!!
+```
+
+Markdown 문법을 기본으로 작성하기 때문에 익혀두시면 편하실 겁니다.
+
+참고로 github의 readme파일 또한 이 문법을 사용하기 때문에 개발자라면 한번쯤 사용해보시는 것을 추천드립니다.
 
 {{< admonition >}}
-By default all posts and pages are created as a draft. If you want to render these pages, remove the property `draft: true` from the metadata or set the property `draft: false`.
+
+`draft: true`라는 부분이 보이는데요, 저는 이를 **수정 중**이라는 의미로 받아들였습니다.
+
+지금은 `수정중 : true`이며, 다 작성했다면 `수정중 : false`가 되겠네요.
+
+{{< /admonition >}}
+
+{{< admonition tip >}}
+예제에서는 first_post.md라는 이름으로 만들었습니다.
+
+이 이름은 뭐가 되어도 상관이 없지만, `post/` 부분은 꼭 붙여 주셔야 합니다.
 {{< /admonition >}}
 
 ### 2.5 Launching the Website Locally
 
-Launch by using the following command:
+그럼 로컬 환경에서 지금껏 만든 블로그를 돌려봅시다!!
 
 ```bash
-hugo serve
+hugo serve -D
 ```
 
-Go to `http://localhost:1313`.
+{{< admonition tip>}}
 
-![Basic configuration preview](/images/theme-documentation-basics/basic-configuration-preview.png "Basic configuration preview")
+분명 우리는 markdown을 수정하면서 잘 작성되었는지 보고 싶을 것입니다.
+
+위와 같이 동작시키면, hugo는 매우 고맙게도 포스트들의 변경 내용을 즉각적으로 반영 가능해서 보여줍니다.
+
+{{< /admonition >}}
+
+Go to `http://localhost:1313`.
 
 {{< admonition tip >}}
 When you run `hugo serve`, when the contents of the files change, the page automatically refreshes with the changes.
