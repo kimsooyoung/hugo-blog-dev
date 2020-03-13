@@ -3,7 +3,7 @@ weight: 1
 title: "How to make Hugo Blog like this?? (Hugo + GitHub pages)"
 date: 2020-03-12T18:18:59+09:00
 lastmod: 2020-03-13T21:29:01+08:00
-draft: true
+draft: false
 author: "Swimming Kim"
 license: "MIT"
 description: "Let's make a FULL-FREE blog like this"
@@ -24,7 +24,7 @@ comment: true
 
 ## Hugo 블로그 구축기
 
-> Hugo 설치, Open-Source theme를 사용해서 블로그 구축, GitHub Page로 배포하는 과정을 다룹니다.
+Hugo 설치, Open-Source theme를 사용해서 블로그 구축, GitHub Page로 배포하는 과정을 다룹니다.
 
 <!--more-->
 
