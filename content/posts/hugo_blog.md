@@ -169,7 +169,7 @@ git init
 git submodule -b master add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
-참고로 저는 3번의 방법을 사용하였습니다. 참고로 `submodule`에 대해서 더 알고 싶다면 [다음의 문서](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88)를 추천드립니다.
+참고로 저는 3번의 방법을 사용하였습니다. 참고로 `submodule`에 대해서 더 알고 싶다면 [Git- Submodule](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88)를 추천드립니다.
 
 위와 같이 작업해 두면 나중에 LoveIt theme이 발전해서 더 멋있어졌을 때, 바로 적용할 수 있을 것입니다. :v:
 
@@ -177,7 +177,7 @@ git submodule -b master add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 
 방금 가져온 LoveIt theme를 사용해봅시다.
 
-이를 위해서 최상단의 config.toml을 다음과 같이 수정합니다. ( 세부 내용은 [LoveIt Reference](https://hugoloveit.com/theme-documentation-basics/)를 참고하였습니다. )
+이를 위해서 최상단의 config.toml을 다음과 같이 수정합니다. ( 세부 내용은 [LoveIt Document](https://hugoloveit.com/theme-documentation-basics/)를 참고하였습니다. )
 
 ```toml
 baseURL = "http://example.org/"
@@ -238,7 +238,7 @@ draft: true
 ---
 ```
 
-**---으로 감싸진 부분은 뭘까요??**
+**`---`으로 감싸진 부분은 뭘까요??**
 
 이는 마치 일기장의 날짜, 날씨와 같이 모든 글에 공통적으로 들어가는 부분을 Hugo가 자동 생성해 준 것이라고 볼 수 있습니다.
 
@@ -340,11 +340,11 @@ Hugo는 매우 고맙게도 `hugo serve`를 통해 포스트들의 변경 내용
 **theme내의 코드를 절대 수정하지 말 것!!!**
 {{< /admonition >}}
 
-가장 우선적으로 사용하고 계신 theme의 document를 참조하시길 바랍니다.
+가장 우선적으로 사용하고 계신 theme의 `Document`를 참조하시길 바랍니다.
 
-제가 사용하고 있는 `LoveIt` theme도 해당 내용들에 대한 document들을 제공하고 있습니다.
+제가 사용하고 있는 `LoveIt theme`도 해당 내용들에 대한 [Document](https://hugoloveit.com/)들을 제공하고 있습니다.
 
-예시 커스텀 디자인을 소개하고, 따라하기 위해서는 다음과 같은 부분을 config.toml에 삽입하라고 조언하고 있습니다.
+해당 페이지를 들어가보면, 다음과 같은 부분을 config.toml에 삽입하라고 조언하고 있습니다.
 
 ```toml
 [params]
@@ -692,16 +692,90 @@ Hugo는 매우 고맙게도 `hugo serve`를 통해 포스트들의 변경 내용
   taxonomyTerm = ["HTML"]
 ```
 
-저는 기본 테마에도 만족했기에 특별한 디자인 수정을 하지는 않았지만
+위 작업을 마치고 몇가지 개인 정보들 및 설정을 바꾸어 주었습니다.
 
-- 폰트 크기
-- 이모티콘 사용 가능
+- `avatarURL`
+- `params.social` 내의 값 (Github, LinkedIn, Facebook 계정 정보)
+- post내에서 emoji를 쓰고 싶었기에 `enableEmoji = true`를 추가하였습니다. (참고 - [github markdown emoji markup](https://gist.github.com/rxaviers/7360908))
 
-등을 바꾸어 주었습니다. LoveIt document를 참조하였으며, 약간의 삽질을 하였습니다.
+추가적으로, 저는 기본 테마에도 만족했기에 특별한 디자인 수정을 하지는 않았지만 폰트 크기가 너무 커서 줄이고 싶었습니다.
 
-다시 말하지만 **Document를 먼저 살펴보세요!!**
+폰트 크기를 바꾸고 싶다... 가장 먼저 `font-size`를 변경하는 방법이 떠오를 것입니다.
+
+하지만, 앞서 말하였듯이
+
+{{< admonition >}}
+
+1. **절대로** `themes`안의 내용을 바꾸지 마세요!!
+2. **Document를 먼저 살펴보세요!!**
+
+{{< /admonition >}}
+
+2번을 따라서 다음의 Document 내용을 봅시다. [LoveIt Theme Documentation - Basics](https://hugoloveit.com/theme-documentation-basics/)
+
+{{< admonition >}}
+
+### 3.4 Style Customization
+
+**LoveIt** theme has been built to be as configurable as possible by defining custom `.scss` style files.
+
+The directory including the custom `.scss` style files is `config/css` relative to **your project path**.
+
+In `_override.scss`, you can override the variables in `themes/LoveIt/assets/css/_variables.scss` to customize the style.
+
+Here is a example:
+
+```scss
+@import url("https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap&subset=latin-ext");
+$code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco,
+  monospace;
+```
+
+In `_custom.scss`, you can add some css style code to customize the style.
+
+{{< /admonition >}}
+
+프로젝트 디렉토리에 `config/css` 폴더를 만들고, 해당 폴더 안에 `_custom.scss`, 혹은 `_override.scss` 파일을 만들어서 커스터마이징 및 기존 scss를 override하라고 조언하고 있습니다.
+
+```scss
+// ==============================
+// Variables
+// ==============================
+
+// ========== Global ========== //
+// Font and Line Height
+$global-font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Microsoft
+    Yahei, Segoe UI, Helvetica, Arial, sans-serif, Segoe UI Emoji !default;
+$global-font-size: 16px;
+$global-font-weight: 400;
+$global-line-height: 1.5rem;
+
+...
+```
+
+`themes/LoveIt/assets/css/_variables.scss`는 위와 같이 시작하는 sass입니다.
+전체 글자 크기에 해당하는 `$global-font-family` 값을 더 작게 바꾸어 보겠습니다.
+
+```scss
+$global-font-size: 0.8rem;
+```
+
+위 작업을 마친 후 `hugo serve`를 실행시켜서 글자 크기가 더 작아진 것을 확인해보세요.
 
 ## 4 Build the Website
+
+지금까지의 과정을 잘 따라왔다면, 다음과 같이
+
+<img width="1642" alt="before_deploy" src="https://user-images.githubusercontent.com/12381733/77080212-613a1580-6a3c-11ea-871b-973c0bc16348.png">
+
+- 커스텀 아이콘과 소셜 계정들이 연동되어 있는 메인 페이지
+- 1개 이상의 포스트와 description
+
+위의 요소들을 지닌 멋진 `Hugo` 블로그를 갖게 되셨을 것입니다.
+
+그럼 이제는 `Github Pages`를 사용해서 위 블로그를 배포해 볼 차례입니다.
+
+이 작업을 통해서 `https://<your-github-id>.github.io/` 주소로 누구나 들어와서 볼 수 있는 블로그를 갖게 될 것입니다.
 
 When your site is ready to deploy, run the following command:
 
