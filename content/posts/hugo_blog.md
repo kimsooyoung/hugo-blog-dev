@@ -24,7 +24,7 @@ comment: true
 
 ## Hugo 블로그 구축기
 
-Hugo 설치, Open-Source theme를 사용해서 블로그 구축, GitHub Page로 배포하는 과정을 다룹니다.
+Hugo 설치, Open-Source theme을 사용해서 블로그 구축, GitHub Page로 배포하는 과정을 다룹니다.
 
 <!--more-->
 
@@ -137,6 +137,8 @@ cd <your-site-name>
 - content : 새로운 블로그 글을 쓰게 되면, 해당 포스트가 이곳에 담기게 됩니다.
 - themes : 선택한 디자인 theme가 담기게 됩니다.
 
+추후에 디자인 customizing 작업을 하게 되면 `layouts`, `static` 폴더들도 사용하게 되지만, 이 글에서는 자세하게 다루지 않습니다.
+
 ### 2.2 Clone the Theme
 
 [Hugo Themes](https://themes.gohugo.io/)에는 수많은 다양한 theme들이 있습니다.
@@ -167,7 +169,9 @@ git init
 git submodule -b master add https://github.com/dillonzq/LoveIt.git themes/LoveIt
 ```
 
-참고로 저는 3번의 방법을 사용하였습니다. 나중에 LoveIt theme이 더 멋있어진다면 바로 적용할 수 있게요 :v:
+참고로 저는 3번의 방법을 사용하였습니다. 참고로 `submodule`에 대해서 더 알고 싶다면 [다음의 문서](https://git-scm.com/book/ko/v2/Git-%EB%8F%84%EA%B5%AC-%EC%84%9C%EB%B8%8C%EB%AA%A8%EB%93%88)를 추천드립니다.
+
+위와 같이 작업해 두면 나중에 LoveIt theme이 발전해서 더 멋있어졌을 때, 바로 적용할 수 있을 것입니다. :v:
 
 ### 2.3 Basic Configuration {#basic-configuration}
 
@@ -216,17 +220,31 @@ theme = "LoveIt"
     weight = 3
 ```
 
-### 2.4 Create Your First Post
+## 3 Create Your First Post
 
-그럼 이번에는 첫 포스트를 작성해 봅시다!! 최상단 디렉토리로 들어가서 원하는 이름의 포스트를 만들어 줍니다.
+결과를 살펴보기 전에 첫 포스트를 작성해 봅시다!! 최상단 디렉토리로 들어가서 원하는 이름의 포스트를 만들어 줍니다.
 
 ```bash
 hugo new posts/first_post.md
 ```
 
-`content/posts` 폴더 안에 markdown 파일이 만들어졌습니다.
+`content/posts` 폴더 안에 다음과 같은 markdown 파일이 만들어졌을 것입니다.
 
-우선 다음과 같이 수정해 보겠습니다.
+```
+---
+title: "First"
+date: 2020-03-13T14:49:58+09:00
+draft: true
+---
+```
+
+**---으로 감싸진 부분은 뭘까요??**
+
+이는 마치 일기장의 날짜, 날씨와 같이 모든 글에 공통적으로 들어가는 부분을 Hugo가 자동 생성해 준 것이라고 볼 수 있습니다.
+
+이 부분을 고치고 싶다면 `archetypes > default.md`를 수정하시면 됩니다. 이 글 뒷부분에 추가하도록 하겠습니다.
+
+지금은 우선, 다음과 새 포스트를 써보도록 하지요
 
 ```markdown
 ---
@@ -240,7 +258,7 @@ draft: true
 # 안녕하세요!!
 ```
 
-Markdown 문법을 기본으로 작성하기 때문에 익혀두시면 편하실 겁니다.
+Hugo에서는 Markdown 문법을 기본으로 post를 작성하기 때문에 기본 사용법을 익혀두시면 편하실 겁니다.
 
 참고로 github의 readme파일 또한 이 문법을 사용하기 때문에 개발자라면 한번쯤 사용해보시는 것을 추천드립니다.
 
@@ -255,57 +273,78 @@ Markdown 문법을 기본으로 작성하기 때문에 익혀두시면 편하실
 {{< admonition tip >}}
 예제에서는 first_post.md라는 이름으로 만들었습니다.
 
-이 이름은 뭐가 되어도 상관이 없지만, `post/` 부분은 꼭 붙여 주셔야 합니다.
+이 이름은 뭐가 되어도 상관이 없지만, 저와 같은 환경으로 진행을 원하신다면 `post/` 부분은 꼭 붙여 주셔야 합니다.
 {{< /admonition >}}
 
-### 2.5 Launching the Website Locally
+### 3.1 Launching the Website Locally
 
 그럼 로컬 환경에서 지금껏 만든 블로그를 돌려봅시다!!
+
+terminal을 키고 다음의 커맨드를 입력해주세요
 
 ```bash
 hugo serve
 ```
 
-{{< admonition tip>}}
+```bash
+                   | EN
+-------------------+-----
+  Pages            | 15
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     | 94
+  Processed images |  0
+  Aliases          |  5
+  Sitemaps         |  1
+  Cleaned          |  0
 
-분명 우리는 markdown을 수정하면서 잘 작성되었는지 보고 싶을 것입니다.
+Built in 81 ms
+Watching for changes in /Users/swimm_kim/Documents/Dev/Web/hugo-blog-dev/{archetypes,content,data,layouts,static,themes}
+Watching for config changes in /Users/swimm_kim/Documents/Dev/Web/hugo-blog-dev/config.toml
+Environment: "development"
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+```
 
-위와 같이 동작시키면, hugo는 매우 고맙게도 포스트들의 변경 내용을 즉각적으로 반영 가능해서 보여줍니다.
-
-{{< /admonition >}}
+다음과 같은 콜솔 화면이 나타났나요??
 
 **블로그 화면을 보고 싶다면 [`http://localhost:1313`](http://localhost:1313)로 접속해 보세요!!**
 
+{{< admonition tip>}}
+
+분명 우리는 글을 수정하면서 잘 작성되고 있는지, 다른 사람들에게는 어떻게 보여질지를 확인하고 싶을 것입니다.
+
+Hugo는 매우 고맙게도 `hugo serve`를 통해 포스트들의 변경 내용을 즉각적으로 반영 가능해서 보여줍니다.
+
+{{< /admonition >}}
+
 <img width="1608" alt="스크린샷 2020-03-13 오후 3 09 20" src="https://user-images.githubusercontent.com/12381733/76594487-a641e180-653c-11ea-9389-e0ca94db1e6b.png">
 
-### 2.6 Custumize Home Page
+**축하드립니다!! Hugo 블로그를 갖게 되셨군요!! :clap::clap::clap:**
 
-기능상의 문제는 없지만, 블로그라 하기에 아직은 뭔가 좀 밋밋합니다.
+이제 customizing, deploy를 할 차례입니다
 
-## 3. Build the Website
+### 3.2 Custumize Home Page
 
-When your site is ready to deploy, run the following command:
+- 기본 theme도 훌륭하지만 디자인을 수정하고 싶다.
+- 댓글 쓰기, 수학 수식 표현 등의 기능을 넣고 싶다.
+- 내가 디자인한 로고를 블로그에 삽입하고 싶다.
 
-```bash
-hugo
-```
+고맙게도, 위와 같은 기능들을 대부분의 Hugo theme들이 기본적으로 제공하고 있습니다.
 
-A `public` folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.
+다만, `css`, `styled components`등의 웹 디자인을 잘 다루신다 해도 주의해야 할 점이 있습니다.
 
-{{< admonition tip >}}
-The website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)).
-Alternatively, you can use [AWS Amplify](https://gohugo.io/hosting-and-deployment/hosting-on-aws-amplify/), [Github pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/), [Render](https://gohugo.io/hosting-and-deployment/hosting-on-render/) and more...
+{{< admonition>}}
+**theme내의 코드를 절대 수정하지 말 것!!!**
 {{< /admonition >}}
 
-## 3 Configuration
+가장 우선적으로 사용하고 계신 theme의 document를 참조하시길 바랍니다.
 
-### 3.1 Site Configuration {#site-configuration}
+제가 사용하고 있는 `LoveIt` theme도 해당 내용들에 대한 document들을 제공하고 있습니다.
 
-In addition to [Hugo global configuration](https://gohugo.io/overview/configuration/) and [menu configuration](#basic-configuration), **LoveIt** lets you define the following parameters in your site configuration (here is a `config.toml`, whose values are default).
-
-{{< admonition >}}
-Note that some of these parameters are explained in details in other sections of this documentation.
-{{< /admonition >}}
+예시 커스텀 디자인을 소개하고, 따라하기 위해서는 다음과 같은 부분을 config.toml에 삽입하라고 조언하고 있습니다.
 
 ```toml
 [params]
@@ -652,6 +691,40 @@ Note that some of these parameters are explained in details in other sections of
   taxonomy = ["HTML", "RSS"]
   taxonomyTerm = ["HTML"]
 ```
+
+저는 기본 테마에도 만족했기에 특별한 디자인 수정을 하지는 않았지만
+
+- 폰트 크기
+- 이모티콘 사용 가능
+
+등을 바꾸어 주었습니다. LoveIt document를 참조하였으며, 약간의 삽질을 하였습니다.
+
+다시 말하지만 **Document를 먼저 살펴보세요!!**
+
+## 4 Build the Website
+
+When your site is ready to deploy, run the following command:
+
+```bash
+hugo
+```
+
+A `public` folder will be generated, containing all static content and assets for your website. It can now be deployed on any web server.
+
+{{< admonition tip >}}
+The website can be automatically published and hosted with [Netlify](https://www.netlify.com/) (Read more about [Automated HUGO deployments with Netlify](https://www.netlify.com/blog/2015/07/30/hosting-hugo-on-netlifyinsanely-fast-deploys/)).
+Alternatively, you can use [AWS Amplify](https://gohugo.io/hosting-and-deployment/hosting-on-aws-amplify/), [Github pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/), [Render](https://gohugo.io/hosting-and-deployment/hosting-on-render/) and more...
+{{< /admonition >}}
+
+## 3 Configuration
+
+### 3.1 Site Configuration {#site-configuration}
+
+In addition to [Hugo global configuration](https://gohugo.io/overview/configuration/) and [menu configuration](#basic-configuration), **LoveIt** lets you define the following parameters in your site configuration (here is a `config.toml`, whose values are default).
+
+{{< admonition >}}
+Note that some of these parameters are explained in details in other sections of this documentation.
+{{< /admonition >}}
 
 ![Complete configuration preview](/images/theme-documentation-basics/complete-configuration-preview.png "Complete configuration preview")
 
