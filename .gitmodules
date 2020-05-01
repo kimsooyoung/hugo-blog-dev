@@ -2,7 +2,3 @@
 	path = themes/LoveIt
 	url = https://github.com/dillonzq/LoveIt.git
 	branch = master
-[submodule "public"]
-	path = public
-	url = https://github.com/kimsooyoung/kimsooyoung.github.io.git
-	branch = master
